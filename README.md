@@ -49,5 +49,6 @@
 ## 제출 방법
 
 1. student.json 파일에 필요한 정보를 입력합니다.
-2. `npm run submit`을 실행시켜 sprint를 제출합니다.
+2. 주의 - `npm run submit' 하기 이전에 `npm run test'를 하여야 최신 테스트 결과가 반영됩니다.
+3. `npm run test` 이후에 `npm run submit`을 실행시켜 sprint를 제출합니다.
 3. 자신의 github(remote) repo에 push합니다.
