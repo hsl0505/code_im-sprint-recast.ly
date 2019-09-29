@@ -6,10 +6,10 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "webpack --mode production",
-    "test": "jest __test__/student.test.js && jest src/components/__test__/index.test.js",
-    "submit-test": "jest --json --outputFile=result.json",
+    "test": "jest src/components/__test__/index.test.js --json --outputFile=result.json",
+    "pre-test" : "node __test__/preTest.js",
     "check": "node .airci/submit.js",
-    "submit": "npm-run-all -c -s --silent submit-test check"
+    "submit": "npm-run-all -s --silent pre-test check"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^25.0.0",
     "babel-loader": "^8.0.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -30,7 +30,7 @@
     "eslint": "^5.12.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-react": "^7.12.3",
-    "jest": "^23.6.0",
+    "jest": "^25.0.0",
     "npm-run-all": "^4.1.5",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.7.0",
