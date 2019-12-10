@@ -1,7 +1,7 @@
 import React from "react";
 
 const VideoListEntry = props => {
-  let list = props.dataList.snippet;
+  let list = props.video.snippet;
   return (
     <div className="video-list-entry">
       <div className="media-left media-middle">
@@ -12,7 +12,7 @@ const VideoListEntry = props => {
         />
       </div>
       <div className="media-body">
-        <div className="video-list-entry-title">{list.title}</div>
+        <div className="video-list-entry-title" onClick={props.clickHandler}>{list.title}</div>
         <div className="video-list-entry-detail">{list.description}</div>
       </div>
     </div>

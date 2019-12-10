@@ -6,25 +6,45 @@ import VideoList from "./VideoList";
 import { fakeData } from "./__test__/fakeData";
 console.log(fakeData);
 
+let tempArr = fakeData;
+
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
-      vdTitle: "default title",
-      vdDesc: "default description"
+      currentVideo : tempArr[0],
+      videos : tempArr
+      // videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
+      // vdTitle: "default title",
+      // vdDesc: "default description"
     };
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
+  // 리스트엔트리 클릭
+  clickHandler (event) {
+    const clicked = event.target.textContent;
+    let temp;
+    for (let i=0; i<this.state.videos.length; i++) {
+      if(tempArr[i]["snippet"]["title"] === clicked) {
+        temp = tempArr[i]
+      }
+    }
+    this.setState({
+      currentVideo : temp
+    })
+  }
+  
   render() {
     return (
       <div>
         <Nav />
         <div className="col-md-7">
-          <VideoPlayer stateInfo={this.state} />
+          <VideoPlayer video={this.state.currentVideo} />
         </div>
         <div className="col-md-5">
-          <VideoList arr={fakeData} />
+          <VideoList videos={this.state.videos} clickHandler={this.clickHandler} /> 
         </div>
       </div>
     );
