@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "webpack --mode production",
     "test": "jest src/components/__test__/index.test.js --json --outputFile=result.json",
-    "pre-test" : "node __test__/preTest.js",
+    "pre-test": "node __test__/preTest.js",
     "check": "node .airci/submit.js",
     "submit": "npm-run-all -s --silent pre-test check"
   },
