@@ -1,19 +1,16 @@
 import React from "react";
-//iframe src는 그대로 두고
-// 타이틀과 디스크립션만 fakeData에서 가져오기
 
 const VideoPlayer = props => {
-  console.log(props.video)
+  console.log(props.video);
   if (props.video === null) {
-    return null
+    return null;
   }
-  
+
   return (
     <div className="video-player">
       <div className="embed-responsive embed-responsive-16by9">
         <iframe
           className="embed-responsive-item"
-          // src={props.display.여기바꿔야된당}
           src={`https://www.youtube.com/embed/${props.video.id.videoId}`}
           allowFullScreen
         ></iframe>

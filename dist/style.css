@@ -4,9 +4,17 @@ body {
   background: #f1f1f1;
 }
 
+#contents {
+  display: flex;
+  flex-direction: row;
+}
+
 .navbar {
   background: #fff;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .navbar img {
@@ -21,7 +29,7 @@ body {
 
 .search-bar .form-control {
   border-radius: 2px;
-  width: 80%
+  width: 80%;
 }
 .search-bar .btn {
   border-radius: 2px;
@@ -34,14 +42,14 @@ body {
 .search-bar .btn:hover {
   border-color: #c6c6c6;
   background: #f0f0f0;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.10);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .video-player-details {
   background: #fff;
   padding: 8px;
   border: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
 }
 
@@ -49,13 +57,17 @@ body {
   background: #fff;
   padding: 8px;
   border: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .video-list-entry {
   font-size: 16px;
   padding: 8px;
+  display: flex;
+  flex-direction: row;
 }
 
 .video-list-entry-title {

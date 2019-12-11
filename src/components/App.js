@@ -4,26 +4,25 @@ import VideoPlayer from "./VideoPlayer";
 import VideoList from "./VideoList";
 
 import { YOUTUBE_API_KEY } from "../../config/youtube";
-// import searchYouTube from "../searchYouTube";
-
+import searchYouTube from "../searchYouTube";
 import { fakeData } from "./__test__/fakeData";
-console.log(fakeData);
-let tempArr = fakeData;
+
+// import { fakeData } from "./__test__/fakeData";
+// console.log(fakeData);
+// let tempArr = fakeData;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: tempArr,
-      currentVideo: tempArr[0],
+      videos: fakeData,
+      currentVideo: fakeData[0],
       currentInput: ""
     };
 
     this.clickHandler = this.clickHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.searchClickHandle = this.searchClickHandle.bind(this);
-    // this.setting = this.setting.bind(this)
-
   }
 
   // 리스트엔트리 클릭
@@ -39,61 +38,91 @@ class App extends React.Component {
       currentVideo: temp
     });
   }
-  
-  handleChange(event) {
+
+  handleChange(callback) {
+    const target = event.target;
+    if (target.value.includes("\"")) {
+      return null
+    }
     this.setState({
-      currentInput : event.target.value
-    })
-  }
-  
-  searchClickHandle(callback) {  //setTimeout
+      currentInput: target.value
+    });
     setTimeout(() => {
       const temp = {
-        query : this.state.currentInput,
-        max : 5,
-        key : YOUTUBE_API_KEY
-      }
-      callback(temp, (json) => {
-        this.setState({
-          videos : json.items,
-          currentVideo : json.items[0]
-        })
-      })
-    }, 0)
+        query: this.state.currentInput,
+        max: 5,
+        key: YOUTUBE_API_KEY
+      };
+      callback(temp, json => {
+        if( json.items.length !== 0) {
+          this.setState({
+            videos: json.items,
+            currentVideo: json.items[0]
+          });
+        }
+      });
+    }, 3000);
   }
-  
-  
-  // componentDidMount() {
 
-  // }
+  searchClickHandle(callback) {
+    setTimeout(() => {
+      const temp = {
+        query: this.state.currentInput,
+        max: 5,
+        key: YOUTUBE_API_KEY
+      };
+      callback(temp, json => {
+        if( json.items.length !== 0) {
+          this.setState({
+            videos: json.items,
+            currentVideo: json.items[0]
+          });
+        }
+      });
+    }, 0);
+  }
+
+  componentDidMount() {
+    console.log("did mount");
+    setTimeout(() => {
+      const temp = {
+        query: "react",
+        max: 5,
+        key: YOUTUBE_API_KEY
+      };
+      searchYouTube(temp, json => {
+        this.setState({
+          videos: json.items,
+          currentVideo: json.items[0]
+        });
+      });
+    }, 0);
+  }
 
   render() {
+    if (this.state.videos === null) {
+      return null;
+    }
     return (
       <div>
-        <Nav handleChange={this.handleChange} searchClickHandle={this.searchClickHandle}/>
-        <div className="col-md-7">
-          <VideoPlayer video={this.state.currentVideo} />
-        </div>
-        <div className="col-md-5">
-          <VideoList
-            videos={this.state.videos}
-            clickHandler={this.clickHandler}
-          />
+        <Nav
+          handleChange={this.handleChange}
+          searchClickHandle={this.searchClickHandle}
+        />
+        <div id="contents">
+          <div className="col-md-7">
+            <VideoPlayer video={this.state.currentVideo} />
+          </div>
+          <div className="col-md-5">
+            <VideoList
+              videos={this.state.videos}
+              clickHandler={this.clickHandler}
+            />
+          </div>
         </div>
       </div>
     );
   }
 }
-// const App = () => (
-//   <div>
-//     <Nav />
-//     <div className="col-md-7">
-//       <VideoPlayer arr={fakeData} />
-//     </div>
-//     <div className="col-md-5">
-//       <VideoList arr={fakeData} />
-//     </div>
-//   </div>
-// );
 
 export default App;
