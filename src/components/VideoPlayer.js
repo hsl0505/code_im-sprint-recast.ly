@@ -14,7 +14,7 @@ const VideoPlayer = props => {
         <iframe
           className="embed-responsive-item"
           // src={props.display.여기바꿔야된당}
-          src={props.video.snippet.thumbnails.default.url}
+          src={`https://www.youtube.com/embed/${props.video.id.videoId}`}
           allowFullScreen
         ></iframe>
       </div>
