@@ -8,6 +8,7 @@ const VideoList = props => {
       key={list.id.videoId}
       video={list}
       clickHandler={props.clickHandler}
+      watchLaterClickHandle={props.watchLaterClickHandle}
     />
   ));
   return <div className="video-list media">{mapArr}</div>;

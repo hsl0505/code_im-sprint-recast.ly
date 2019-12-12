@@ -5,6 +5,5 @@ export default function searchYouTube ({ query, max=5, key }, callback) {
   fetch(getUrl)
     .then(res => res.json())
     .then(json => {
-      console.log(json)
       callback(json)});
 }
