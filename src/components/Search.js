@@ -3,12 +3,12 @@ import React from "react";
 
 class Search extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       // currentInput: "",
-      reset : 0
-    }
-    this.currentInput = '';
+      reset: 0
+    };
+    this.currentInput = "";
 
     this.handleChange = this.handleChange.bind(this);
     this.onSearchClickHandle = this.onSearchClickHandle.bind(this);
@@ -16,29 +16,28 @@ class Search extends React.Component {
 
   handleChange() {
     const target = event.target;
-    if (target.value.includes("\"")) {
-      return null
+    if (target.value.includes('"')) {
+      return null;
     }
     this.currentInput = target.value;
     // this.setState({
     //   currentInput: target.value,
     // });
   }
-  
+
   onSearchClickHandle() {
-    this.props.searchClickHandle(this.currentInput)
-    this.currentInput = ''
+    this.props.searchClickHandle(this.currentInput);
+    this.currentInput = "";
     this.setState({
-      reset : this.state.reset + 1
-    })
+      reset: this.state.reset + 1
+    });
   }
-  // 다 입력만 다했을대 스테이트랑 클릭을 햇을때 
-  // shouldComponentUpdate(nextProps, nextState) { 
+  // 다 입력만 다했을대 스테이트랑 클릭을 햇을때
+  // shouldComponentUpdate(nextProps, nextState) {
   //   return !(nextState.isInput === true)
   // }
 
   render() {
-    console.log("asdf")
     return (
       <div className="search-bar form-inline">
         <input
@@ -55,16 +54,13 @@ class Search extends React.Component {
           <span className="glyphicon glyphicon-search"></span>
         </button>
       </div>
-    )
+    );
   }
 }
 
-
-
-
 // const Search = props => {
 //   // console.log("search render")
-//   return 
+//   return
 // }
 
 export default Search;
